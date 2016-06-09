@@ -1,0 +1,246 @@
+﻿@{
+    ViewBag.Title = "Nota Fiscal - Produto";
+    var venda = ViewBag.venda;
+    var totalVendaProdutos = 0;
+}
+<style>
+    .tableHeader{text-align:center; border-bottom:2px double #337ab7;padding-bottom:2px}
+</style>
+
+<h1>Nota Fiscal de Produto</h1>
+
+<fieldset>
+    <div class="container">
+        <div class="row">
+            <h2>Dados do Cliente</h2>
+            <hr />
+            <div class="col-sm-3">
+                <h3>Cliente</h3>
+                <h4>@ViewBag.venda.ID_Cliente</h4>
+             </div>
+            <div class="col-sm-3">
+                <h3>Email</h3>
+                <h4>@ViewBag.venda.ClienteFornecedor.ID</h4>
+             </div>
+            <div class="col-sm-3">
+                <h3>Telefone</h3>
+                <h4>@ViewBag.venda.ClienteFornecedor.ID</h4>
+             </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>Data da Venda</h3>
+                <h4>@ViewBag.venda.Data_Venda</h4>
+             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>Vencimento</h3>
+                <h4>@ViewBag.venda.Data_Venda</h4>
+             </div>
+            <div class="col-sm-3">
+                <h3>Forma de Pagamento</h3>
+                <h4>@ViewBag.venda.Forma_Pgto.Nome</h4>
+             </div>
+        </div>
+    
+        <div class="row">
+            <h2>Dados sobre o frete</h2><hr />            
+                <div class="form-group col-xs-4">
+                  <label for="qtVol">Quantidade de vol. transportados</label>
+                  <input type="number" class="form-control" placeholder="Quantos Volumes?" name="qtVol" id="qtVol" value="" />
+                </div>
+                <div class="form-group col-xs-4">
+                    <label for="qtVol">Quem será responsavel pelo frete?</label>
+                    <select class="form-control" name="frete" id="freteDrpDwn" >
+                        <option value="0">Não haverá frete</option>
+                        <option value="1">Minha empresa</option>
+                        <option value="2">Meu cliente</option>
+                    </select>
+                </div>
+         </div>
+        <div  id ="freteBox">
+            <div class="row">
+                   <div class="form-group col-xs-4">
+                     <label for="tipoVol">Tipo de vol. transportados</label>
+                     <input class="form-control" type="text" placeholder="Ex.: Caixas, Barris, Pacotes" name="tipoVol" id="tipoVol" value="" />
+                   </div>
+                   <div class="form-group col-xs-4">
+                     <label for="pesoBruto">Peso bruto total</label>
+                     <input class="form-control" type="number" placeholder="0,00" name="pesoBruto" id="pesoBruto" value="" />
+                   </div>
+                    <div class="form-group col-xs-4">
+                      <label for="pesoLiquido">Peso líquido total</label>
+                      <input class="form-control" type="number" placeholder="0,00" name="pesoLiquido" id="pesoLiquido" value="" />
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <label for="pesoLiquido">O frete será somado no total da Nota Fiscal?</label>
+                    <select class="form-control" name="somaFrete" id="somaFreteDrpDwn" >
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
+                </div>                               
+                <div class="form-group col-xs-2">
+                    <label for="valorFrete">Valor do frete</label>
+                    <input class="form-control" type="number" placeholder="0,00" id="valorFrete" name="valorFrete" value="" />
+                </div>
+                <div class="form-group col-xs-2">
+                    <label for="valorSeguro">Valor do seguro</label>
+                    <input class="form-control" type="number" placeholder="0,00" id="valorSeguro" name="valorSeguro" value="" />
+                </div>
+                <div class="form-group col-xs-2">
+                    <label for="valorFreteAdicional">Despesas Acessórias</label>
+                    <input class="form-control" type="number" placeholder="0,00" id="valorFreteAdicional" name="valorFreteAdicional" value="" />
+                </div>
+            </div>
+        </div> 
+
+
+        <div class="row">
+            <h2>Ativos da Venda</h2>
+            <hr />  
+            <table class="table-striped table-hover table">
+                <tr>
+                    <th>Produto Vendido</th><th>NCM</th><th>ICMS</th><th>Situação Tributária</th>
+                </tr>
+                @foreach(var item in ViewBag.vendaAtivos){
+                    totalVendaProdutos += item.Produto.Valor_Venda;
+                    <tr>
+                        <td>@item.Produto.Nome</td>
+                        <td><input class="form-control" type="text" placeholder="521 - Cavalos" id="ncm-@item.ID" name="ncm-@item.ID" value="@item.Produto.Ncm.Codico" /></td>
+                        <td><input class="form-control" type="number" placeholder="0,00" id="icms-@item.ID" name="icms-@item.ID" value="@item.Produto.ICMS" /></td>
+                        <td><input class="form-control" type="text" placeholder="900 - Outros" id="sitTributaria-@item.ID" name="sitTributaria-@item.ID" value="" /></td>
+                    </tr>
+                }
+            <table>
+        </div>
+
+            <h2>Dados Sobre a Nota Fiscal</h2>
+            <hr />  
+            <div class= "form-group">
+                <label for="valorFreteAdicional">Informações Complementares Contribuinte</label>
+                <textarea class="form-control input-lg" rows="5" iw="50" id="infoAdicionalContribuinte"></textarea>
+            </div>
+        <div class="row">
+            <h2>Totais da Nota Fiscal</h2>
+            <hr />  
+            <div class="panel panel-primary">
+                <div class="panel-heading col-lg-12">IMPOSTOS DA NOTA FISCAL</div>
+                <div class="row">
+                    <div class="panel-body col-md-6" style="border-right:2px double #337ab7; padding-right: 15px;">
+                        <h5 class="tableHeader">Produtos Vendidos</h5>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Valor total de produtos na venda: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4">R$@totalVendaProdutos </span>
+                        </div>
+                        <br /><br /><br />
+                        <h5 class="tableHeader">Valores Adicionais</h5>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Frete: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblFrete">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Despesas acessórias: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblFreteAdicional">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Desconto: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblDesconto">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Seguro: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblSeguro">R$10,00 </span>
+                        </div>
+                        <br />
+                        <div class="tableHeader"></div>
+
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Total Vendido</span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblTotalVenda">R$10,00 </span>
+                        </div>
+                        
+                    </div>
+                    <div class="panel-body col-md-6">
+                        <h5 class="tableHeader">Cálculo de Imposto de produto nesta Venda</h5>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Base de cálculo do ICMS: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblIcmsBase">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Valor do ICMS: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblIcmsTotal">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Base de cálculo do ICMS-ST: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblIcms-st">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Valor do ICMS-ST: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblIcmsSt">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">IPI: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblIpi">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">PIS: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblPIS">R$10,00 </span>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">COFINS: </span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblCOFINS">R$10,00 </span>
+                        </div>
+                        <br /><br /><br /><br />
+
+                        <div class="tableHeader"></div>                        
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <span class="col-sm-5">Impostos que somam na NF</span>
+                            <div class="col-sm-2"></div>
+                            <span class="col-sm-4" id="lblTotalImpostos">R$10,00 </span>
+                        </div>
+                    </div>    
+                </div>
+                <div style="background:#337ab7" class="panel-footer bg-primary">
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <span class="col-sm-5">TOTAL VENDIDO + IMPOSTOS</span>
+                        <div class="col-sm-2"></div>
+                        <span class="col-sm-4" id="lblTotalNota">R$10,00 </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

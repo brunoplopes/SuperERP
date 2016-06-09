@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Estoque Geral";
+    int totalEmEstoque = 0;
+}
+<style>    
+.clickable-row {
+       cursor: pointer;
+    }
+</style>
+<div class="container">
+<h2>Estoque de Produto</h2><hr />
+    <div class="row">
+        <table class="table table-hover col-lg-12">
+            <tr>
+                <th>
+                    Data
+                </th>
+                <th>
+                    Movimentação
+                </th>
+                <th>
+                    Cliente / Fornecedor
+                </th>
+                <th>
+                    Vl. Unitário
+                </th>
+                <th>
+                    Valor de Custo
+                </th>
+                <th>
+                    Qt. Movimentada
+                </th>
+            </tr>
+
+        @foreach (var item in ViewBag.vendaAtivos) {
+            totalEmEstoque -= item.Quantidade;
+            <tr class="clickable-row" data-href='@Url.Action("Venda", "Vendas", new { id = item.Venda.ID })'>
+                <td>
+                    @item.Venda.Data_Venda
+                </td>
+                <td>
+                    Saída
+                </td>
+                <td>
+                    @item.Venda.ClienteFornecedor.ID
+                </td>
+                <td>
+                    @item.Produto.Valor_Venda
+                </td>
+                <td>
+                    TODO: Pegar valor custo
+                </td>
+                <td>
+                    @item.Quantidade
+                </td>
+            </tr>
+        }
+        @foreach (var item in ViewBag.compraAtivos) {
+                totalEmEstoque += item.Quantidade;
+                <tr class="clickable-row" data-href='@Url.Action("Compra", "Compras", new { id = item.Compra.ID })'>
+                    <td>
+                        @item.Compra.Data_Compra
+                    </td>
+                    <td>
+                        Entrada
+                    </td>
+                    <td>
+                        @item.Compra.ClienteFornecedor.ID
+                    </td>
+                    <td>
+                        @item.Produto.Valor_Venda
+                    </td>
+                    <td>
+                        TODO: Pegar valor custo
+                    </td>
+                    <td>
+                        @item.Quantidade
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-4">
+            <table class="table table-reflow striped">
+                <tr>
+                    <th class="bg-info">Saldo Final:</th>
+                    <td>@totalEmEstoque</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.document.location = $(this).data("href");
+        });
+    });
+
+</script>

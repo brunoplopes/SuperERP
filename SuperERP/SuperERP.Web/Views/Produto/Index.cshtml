@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Lista de produtos";
+}
+
+<div ng-app="comprasApp">
+    <div ng-controller="ProdutoListController">
+        <h2>Lista de produtos</h2>
+        <hr />
+        <a class="btn btn-primary" href="/Produto/Create">Criar novo</a>
+        <br /><br />
+        <div ng-repeat="produto in produtos">
+            {{produto.ID}}
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/angular.min.js"></script>    
+    <script src="~/Scripts/Compras/comprasApp.js"></script>    
+}

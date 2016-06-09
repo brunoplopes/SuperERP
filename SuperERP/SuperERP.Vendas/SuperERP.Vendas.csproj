@@ -30,7 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,6 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alterar.cs" />
+    <Compile Include="Cadastro.cs" />
+    <Compile Include="Config\AutoMapperConfig.cs" />
+    <Compile Include="DTO\CategoriaDTO.cs" />
+    <Compile Include="DTO\CompraAtivosEstoqueDTO.cs" />
+    <Compile Include="DTO\ParcelamentoDTO.cs" />
+    <Compile Include="DTO\PessoaFisicaDTO.cs" />
+    <Compile Include="DTO\PessoaJuridicaDTO.cs" />
+    <Compile Include="DTO\ProdutoEstoqueDTO.cs" />
+    <Compile Include="DTO\ServicoDTO.cs" />
+    <Compile Include="DTO\VendaAtivosDTO.cs" />
+    <Compile Include="DTO\VendaAtivosEstoqueDTO.cs" />
+    <Compile Include="DTO\VendaDTO.cs" />
+    <Compile Include="Listar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +70,10 @@
       <Project>{42e4e633-93c0-4f93-91c7-85049b4ca2a5}</Project>
       <Name>SuperERP.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

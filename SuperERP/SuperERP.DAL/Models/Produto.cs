@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SuperERP.Web.Models
+namespace SuperERP.DAL.Models
 {
     public partial class Produto
     {
@@ -15,7 +15,7 @@ namespace SuperERP.Web.Models
         public int ID { get; set; }
         public int ID_Empresa { get; set; }
         public int ID_Categoria { get; set; }
-        public int ID_Cliente { get; set; }
+        public Nullable<int> ID_Cliente { get; set; }
         public Nullable<int> ID_Ncm { get; set; }
         public Nullable<int> ID_Unidade_Medida { get; set; }
         public double ICMS { get; set; }

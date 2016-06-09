@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SuperERP.Vendas.DTO.ServicoDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Categoria_Servico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ICMS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IVA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PIS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COFINS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.custo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Categoria_Servico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ICMS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IVA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PIS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COFINS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.custo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

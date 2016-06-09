@@ -4,32 +4,50 @@
 # User-specific files
 *.suo
 *.user
+<<<<<<< HEAD
 *.userosscache
 *.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+=======
+*.sln.docstates
+
+>>>>>>> origin/A6SGE
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
+<<<<<<< HEAD
 [Rr]eleases/
 x64/
 x86/
+=======
+x64/
+>>>>>>> origin/A6SGE
 build/
 bld/
 [Bb]in/
 [Oo]bj/
 
+<<<<<<< HEAD
 # Visual Studio 2015 cache/options directory
 .vs/
+=======
+# Roslyn cache directories
+*.ide/
+>>>>>>> origin/A6SGE
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+<<<<<<< HEAD
 # NUNIT
+=======
+#NUNIT
+>>>>>>> origin/A6SGE
 *.VisualState.xml
 TestResult.xml
 
@@ -38,10 +56,13 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+<<<<<<< HEAD
 # DNX
 project.lock.json
 artifacts/
 
+=======
+>>>>>>> origin/A6SGE
 *_i.c
 *_p.c
 *_i.h
@@ -94,7 +115,11 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+<<<<<<< HEAD
 # JustCode is a .NET coding add-in
+=======
+# JustCode is a .NET coding addin-in
+>>>>>>> origin/A6SGE
 .JustCode
 
 # TeamCity is a build add-in
@@ -138,6 +163,7 @@ publish/
 ## passwords
 #*.pubxml
 
+<<<<<<< HEAD
 *.publishproj
 
 # NuGet Packages
@@ -148,6 +174,19 @@ publish/
 !**/packages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
+=======
+# NuGet Packages Directory
+packages/*
+## TODO: If the tool you use requires repositories.config
+## uncomment the next line
+#!packages/repositories.config
+
+# Enable "build/" folder in the NuGet Packages folder since
+# NuGet packages use it for MSBuild targets.
+# This line needs to be after the ignore of the build folder
+# (and the packages folder if the line above has been uncommented)
+!packages/build/
+>>>>>>> origin/A6SGE
 
 # Windows Azure Build Output
 csx/
@@ -156,6 +195,7 @@ csx/
 # Windows Store app package directory
 AppPackages/
 
+<<<<<<< HEAD
 # Visual Studio cache files
 # files ending in .cache can be ignored
 *.[Cc]ache
@@ -163,6 +203,11 @@ AppPackages/
 !*.[Cc]ache/
 
 # Others
+=======
+# Others
+sql/
+*.Cache
+>>>>>>> origin/A6SGE
 ClientBin/
 [Ss]tyle[Cc]op.*
 ~$*
@@ -172,7 +217,10 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/
+<<<<<<< HEAD
 orleans.codegen.cs
+=======
+>>>>>>> origin/A6SGE
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -197,6 +245,7 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 
+<<<<<<< HEAD
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 
@@ -210,3 +259,9 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+=======
+# LightSwitch generated files
+GeneratedArtifacts/
+_Pvt_Extensions/
+ModelManifest.xml
+>>>>>>> origin/A6SGE

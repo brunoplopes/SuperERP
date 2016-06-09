@@ -1,0 +1,101 @@
+﻿@model IEnumerable<SuperERP.Vendas.DTO.ProdutoEstoqueDTO>
+
+@{
+    ViewBag.Title = "Estoque Geral";
+    int totalEmEstoque = 0;
+    double custoTotal = 0;
+}
+<style>    
+.clickable-row {
+       cursor: pointer;
+    }
+</style>
+<div class="container">
+<h2>Estoque Geral</h2><hr />
+    <div class="row">
+        <table class="table table-hover col-lg-12">
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Código
+                </th>
+                <th>
+                    Unidade de Medida
+                </th>
+                <th>
+                    Categoria
+                </th>
+                <th>
+                    Valor Venda
+                </th>
+                <th>
+                    Valor Custo
+                </th>
+                <th>
+                    Estoque
+                </th>
+                <th>
+                    Valor Total
+                </th>
+            </tr>
+
+        @foreach (var item in Model) {
+            totalEmEstoque += item.Estoque;
+            custoTotal += item.Valor_Venda * item.Estoque;
+            var valorTotalProduto = item.Valor_Venda * item.Estoque;
+            <tr class="clickable-row" data-href='@Url.Action("Inventario", "EstoqueGeral", new { id = item.ID })'>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo_Cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unidade_Medida.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor_Venda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor_Custo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estoque)
+                </td>
+                <td>
+                    @valorTotalProduto
+                </td>
+            </tr>
+        }
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-4">
+            <table class="table table-reflow striped">
+                <tr>
+                    <th class="bg-info">Quantidade total em estoque:</th>
+                    <td>@totalEmEstoque</td>
+                </tr>
+                <tr>
+                    <th class="bg-info">Valor total em estoque:</th>
+                    <td>@custoTotal</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function ($) {
+    $(".clickable-row").click(function () {
+        window.document.location = $(this).data("href");
+    });
+});
+
+</script>

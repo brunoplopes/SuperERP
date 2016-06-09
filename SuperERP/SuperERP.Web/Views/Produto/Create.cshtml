@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Novo produto";
+}
+
+<div ng-app="comprasApp">
+    <div ng-controller="CreateProdutoController">
+        <h2>Novo produto</h2>
+        <hr />
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-xs-2">Nome do produto:</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="nome" ng-model="produto.Nome" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Código do produto:</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="codigoCliente" ng-model="produto.Codigo_Cliente" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Código de barras (EAN):</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="codigoBarras" ng-model="produto.Codigo_Barras" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Categoria do produto:</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="categoriaProduto" ng-model="produto.ID_Categoria" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Valor de venda:</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="valorVenda" ng-model="produto.Valor_Venda" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Valor de custo:</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="valorCusto" ng-model="produto.Valor_Custo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Disponível em estoque:</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="valorCusto" ng-model="produto.Estoque" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Máximo em estoque:</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="valorCusto" ng-model="produto.EstoqueMax" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Mínimo em estoque:</label>
+                <div class="col-md-10">
+                    <input class="form-control" name="valorCusto" ng-model="produto.EstoqueMin" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a class="btn btn-primary" ng-click="createProduto()">Criar</a>
+                    <a class="btn btn-default" href="/Produto/Index">Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/Compras/comprasApp.js"></script>
+}

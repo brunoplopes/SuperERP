@@ -1,0 +1,273 @@
+﻿@model IEnumerable<SuperERP.Vendas.DTO.ParcelamentoDTO>
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .atrasado{background:#e34;color:white;}
+    .active {border-top:12px solid white;}
+</style>
+<h2>Parcelas a Receber</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="text-center col-sm-3 alert btn-danger fade in" id="btnAtrasadas">
+            <h4>Atrasadas <span class="badge">@ViewBag.parcelasVencidas.Count</span></h4>            
+            <p class="lead">R$@ViewBag.vencidasValor</p>            
+        </div>
+        <div class="text-center col-sm-3 alert btn-info fade in" id="btnReceber">
+            <h4>A Receber <span class="badge">@ViewBag.parcelasAreceber.Count</span> </h4>
+            <p class="lead">R$@ViewBag.receberValor </p>            
+        </div>
+        <div class="text-center col-sm-3 alert btn-success fade in" id="btnRecebidas">
+            <h4>Recebidas <span class="badge">@ViewBag.parcelasRecebidas.Count</span></h4>
+            <p class="lead">R$@ViewBag.recebidasValor</p>
+        </div>
+        @{var parcelasTotal = ViewBag.parcelasRecebidas.Count + ViewBag.parcelasAreceber.Count + ViewBag.parcelasVencidas.Count;}
+        @{var valorTotal = ViewBag.recebidasValor + ViewBag.receberValor;}
+        <div class="text-center col-sm-3 alert btn-primary fade in active" id="btnTotal">
+            <h4>Total <span class="badge">@parcelasTotal</span></h4>
+            <p class="lead">R$@valorTotal</p>
+        </div>
+    </div>
+</div>
+
+<div id ="Pagas">
+    <h3>Recebidas</h3>
+    <table class="table-striped table-hover table">
+    
+        <tr>
+            <th>
+                Vencimento
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Venda
+            </th>
+            <th>
+                Parcela
+            </th>
+            <th>
+                Valor
+            </th>
+            <th>
+                Pago
+            </th>
+            <th>
+                Pago Em
+            </th>
+        </tr>
+
+    @foreach (var item in ViewBag.parcelasRecebidas)
+    {
+        <tr>
+            <td>
+                @{var vencimento = item.Data_Pagamento.ToShortDateString();}
+                @vencimento
+            </td>
+            <td>
+                @item.Venda.ClienteFornecedor.ID
+            </td>
+            <td>
+                @item.Venda.Venda_Num
+            </td>
+            <td>
+                @item.Numero_Parcela
+            </td>
+            <td>
+                @item.Valor
+            </td>
+            <td>
+                @{var pago = item.Pago == true ? "Pago" : "Não Pago";}
+                @pago
+            </td>
+            <td>
+                @{var pagoEm = item.Data_Pago.ToShortDateString();}
+                @pagoEm
+            </td>
+        </tr>
+    }
+
+    </table>
+</div>
+
+<div id ="Receber">
+    <h3>A Receber</h3>
+    <table class="table-striped table-hover table">    
+    <tr>
+        <th>
+            Vencimento
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Venda
+        </th>
+        <th>
+            Parcela
+        </th>
+        <th>
+            Valor
+        </th>
+        <th>
+            Pago
+        </th>
+        <th>
+            Pago Em
+        </th>
+        <th>
+            
+        </th>
+    </tr>
+
+@foreach (var item in ViewBag.parcelasAreceber  )
+{
+    <tr>
+        <td>
+            @{var vencimento = item.Data_Pagamento.ToShortDateString();}
+            @vencimento
+        </td>
+        <td>
+            @item.Venda.ClienteFornecedor.ID
+        </td>
+        <td>
+            @item.Venda.Venda_Num
+        </td>
+        <td>
+            @item.Numero_Parcela
+        </td>
+        <td>
+            @item.Valor
+        </td>
+        <td>
+            @{var pago = item.Pago == true ? "Pago" : "Não Pago";}
+            @pago
+        </td>
+        <td>
+            A Receber
+        </td>
+        <td>            
+            <a href='@Url.Action("Receber", "ParcelasAReceber", new { id = item.ID })'>
+                <button type="button" class="btn btn-default">Receber</button>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
+</div>
+
+<div id ="Atrasadas">
+    <h3>Atrasadas</h3>
+    <table class="table-striped table-hover table">
+    
+    <tr>
+        <th>
+            Vencimento
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Venda
+        </th>
+        <th>
+            Parcela
+        </th>
+        <th>
+            Valor
+        </th>
+        <th>
+            Pago
+        </th>
+        <th>
+            Pago Em
+        </th>
+        <th>
+            
+        </th>
+    </tr>
+
+@foreach (var item in ViewBag.parcelasVencidas)
+{
+    <tr>
+        <td>
+            @{var vencimento = item.Data_Pagamento.ToShortDateString();}
+            @vencimento
+        </td>
+        <td>
+            @item.Venda.ClienteFornecedor.ID
+        </td>
+        <td>
+            @item.Venda.Venda_Num
+        </td>
+        <td>
+            @item.Numero_Parcela
+        </td>
+        <td>
+            @item.Valor
+        </td>
+        <td>
+            @{var pago = item.Pago == true ? "Pago" : "Não Pago";}
+            @pago
+        </td>
+        <td>
+            Não Pago
+        </td>
+        <td>
+            <a href='@Url.Action("Receber", "ParcelasAReceber", new { id = item.ID })'>
+                <button type="button" class="btn btn-default">Receber</button>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#btnRecebidas").click(function () {
+            $("#btnRecebidas").addClass("active");
+            $("#btnReceber").removeClass("active");
+            $("#btnAtrasadas").removeClass("active");
+            $("#btnTotal").removeClass("active");
+
+            $("#Receber").hide();
+            $("#Atrasadas").hide();
+            $("#Pagas").show();
+        });
+        $("#btnReceber").click(function () {
+            $("#btnRecebidas").removeClass("active");
+            $("#btnReceber").addClass("active");
+            $("#btnAtrasadas").removeClass("active");
+            $("#btnTotal").removeClass("active");
+
+            $("#Receber").show();
+            $("#Atrasadas").hide();
+            $("#Pagas").hide();
+        });
+        $("#btnAtrasadas").click(function () {
+            $("#btnRecebidas").removeClass("active");
+            $("#btnReceber").removeClass("active");
+            $("#btnAtrasadas").addClass("active");
+            $("#btnTotal").removeClass("active");
+
+            $("#Receber").hide();
+            $("#Atrasadas").show();
+            $("#Pagas").hide();
+        });
+        $("#btnTotal").click(function () {
+            $("#btnRecebidas").removeClass("active");
+            $("#btnReceber").removeClass("active");
+            $("#btnAtrasadas").removeClass("active");
+            $("#btnTotal").addClass("active");
+
+            $("#Receber").show();
+            $("#Atrasadas").show();
+            $("#Pagas").show();
+        });
+    });
+</script>
